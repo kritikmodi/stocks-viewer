@@ -1,29 +1,37 @@
 import streamlit as st
 import yfinance as finance
+import dt.streamlit
 
 def get_company_ticker(name):
 	company = finance.Ticker(name)
 	return company
 
-st.markdown("<h1 style='text-align: center; color: white;'>DATATAILR STOCK APP</h1>", unsafe_allow_html=True)
+def main():
 
-first_company = get_company_ticker("GOOGL")
-second_company = get_company_ticker("MSFT")
+	st.markdown("<h1 style='text-align: center; color: white;'>DATATAILR STOCK APP</h1>", unsafe_allow_html=True)
 
-google = finance.download("GOOGL", start="2022-04-01", end="2022-09-01")
-microsoft = finance.download("MSFT", start="2022-04-01", end="2022-09-01")
+	first_company = get_company_ticker("GOOGL")
+	second_company = get_company_ticker("MSFT")
 
-data1 = first_company.history(period="1mo")
-data2 = second_company.history(period="1mo")
+	google = finance.download("GOOGL", start="2022-04-01", end="2022-09-01")
+	microsoft = finance.download("MSFT", start="2022-04-01", end="2022-09-01")
 
-st.write("\n\n\n")
+	data1 = first_company.history(period="1mo")
+	data2 = second_company.history(period="1mo")
 
-st.write("""### Google""")
-st.write(first_company.info['longBusinessSummary'])
-st.write(google)
-st.line_chart(data1.values)
+	st.write("\n\n\n")
 
-st.write("""### Microsoft""")
-st.write(second_company.info['longBusinessSummary'])
-st.write(microsoft)
-st.line_chart(data2.values)
+	st.write("""### Google""")
+	st.write(first_company.info['longBusinessSummary'])
+	st.write(google)
+	st.line_chart(data1.values)
+
+	st.write("""### Microsoft""")
+	st.write(second_company.info['longBusinessSummary'])
+	st.write(microsoft)
+	st.line_chart(data2.values)
+
+application = dt.streamlit.Streamlit()
+
+def __app_main__():
+    return application
