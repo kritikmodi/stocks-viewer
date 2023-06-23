@@ -1,7 +1,8 @@
 import time
+from datetime import datetime, timedelta
 import yfinance as finance
 import pandas as pd
-import numpy as np
+from numpy import random
 import plotly.express as px
 import streamlit as st
 from numerize.numerize import numerize
@@ -52,4 +53,19 @@ with placeholder.container():
         delta = numerize(int(data.Volume[selected_comp][-1] - data.Volume[selected_comp][-2]))
     )
 
-st.line_chart(data.Open[selected_comp])
+st.markdown('### Open Values of '+selected_comp)
+st.write(px.line(data.Open[selected_comp]))
+
+# for i in range(200):
+#     new_price = data.Open[selected_comp][-1] + random.rand() * random.choice(range(1,5))
+        
+#     last_date = data.Open[selected_comp].sort_index().idxmax()
+#     date_obj = last_date + timedelta(days=1)
+#     next_date = date_obj.strftime('%Y-%m-%d')
+    
+#     new_row = pd.Series([new_price], index=pd.to_datetime([next_date]))
+#     col1 = st.columns(2)
+#     with col1[0]:
+#         fig = px.line(data.Open[selected_comp].append(new_row))
+#         st.write(fig)
+#     time.sleep(2)
