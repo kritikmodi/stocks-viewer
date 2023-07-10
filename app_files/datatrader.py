@@ -1,8 +1,4 @@
-import time
-from datetime import datetime, timedelta
 import yfinance as finance
-import pandas as pd
-from numpy import random
 import plotly.express as px
 import streamlit as st
 from numerize.numerize import numerize
